@@ -12,7 +12,7 @@ export default {
   emits: {
     onAddTask({ title, description }) {
       if(title === '' || description === '') {
-        alert('Fill some info please!')
+        console.log('Fill some info please!')
         return false
       }
       return true
@@ -27,7 +27,7 @@ export default {
     return {
       title,
       description,
-      onAddTask
+      onAddTask,
     }
   }
 }
