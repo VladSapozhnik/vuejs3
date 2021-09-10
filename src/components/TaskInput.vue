@@ -1,33 +1,21 @@
 <template>
   <div class="task-input my-list">
     <input v-model="title" placeholder="Title" type="text">
-    <input v-model="description" placeholder="Description" type="text">
-    <button @click="onAddTask">Add task</button>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
 export default {
-  emits: {
-    onAddTask({ title, description }) {
-      if(title === '' || description === '') {
-        console.log('Fill some info please!')
-        return false
-      }
-      return true
-    }
+  props: {
+    value: String
   },
-  setup(props, { emit }) {
-    const title = ref('')
-    const description = ref('')
-    const onAddTask = () => {
-      emit('onAddTask', { title: title.value, description: description.value })
-    }
+  setup (props, {emit}) {
+    const { input } = (
+      props.value, 
+      value => emit("input", value)
+    );
     return {
-      title,
-      description,
-      onAddTask,
+      input
     }
   }
 }
